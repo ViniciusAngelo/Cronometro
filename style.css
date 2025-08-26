@@ -1,12 +1,10 @@
 body {
-    font-family: 'Arial', sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #ffebee; /* Very light red/pink */
-    color: #424242;
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
+    /* ... outras propriedades ... */
+    background-image: url('Sol.avif');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center center;
 }
 
 header {
