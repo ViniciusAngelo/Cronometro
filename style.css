@@ -141,7 +141,7 @@ footer {
 }
 
 /* Responsive adjustments */
-@media (max-width: 798px) {
+@media (max-width: 768px) {
     h1 {
         font-size: 2em;
         height: auto; /* Permite que a altura se ajuste automaticamente */
@@ -177,7 +177,10 @@ footer {
     }
 
     .photo-gallery img {
-        height: 150px;
+        height: auto; /* Permite que a altura se ajuste automaticamente */
+        max-height: 180px; /* Define uma altura máxima para evitar que fiquem muito grandes */
+        object-fit: contain; /* Ou 'contain' para garantir que a imagem inteira seja visível, sem cortes */
+        /* Se usar 'contain', pode ser necessário ajustar o background-color do contêiner da imagem */
     }
 }
 
