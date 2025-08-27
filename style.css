@@ -178,7 +178,7 @@ footer {
 
     .photo-gallery img {
         height: auto; /* Permite que a altura se ajuste automaticamente */
-        max-height: 380px; /* Define uma altura máxima para evitar que fiquem muito grandes */
+        max-height: 370px; /* Define uma altura máxima para evitar que fiquem muito grandes */
         object-fit: contain; /* Ou 'contain' para garantir que a imagem inteira seja visível, sem cortes */
         /* Se usar 'contain', pode ser necessário ajustar o background-color do contêiner da imagem */
     }
