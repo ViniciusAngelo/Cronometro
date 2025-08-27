@@ -1,6 +1,6 @@
 body {
     /* ... outras propriedades ... */
-    background-image: url('Sol.avif');
+    background-image: url('Fundo.jpeg');
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
