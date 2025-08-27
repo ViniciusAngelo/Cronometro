@@ -24,7 +24,7 @@ document.addEventListener("DOMContentLoaded", function() {
         const remainingSeconds = seconds % 60;
 
         timeTogetherElement.textContent = 
-            `Estamos juntos há: ${years} anos, ${Math.floor(remainingDays)} dias, ${remainingHours} horas, ${remainingMinutes} minutos e ${remainingSeconds} segundos.`;
+            `Estamos juntos há: ${years} ano, ${Math.floor(remainingDays)} dias, ${remainingHours} horas, ${remainingMinutes} minutos e ${remainingSeconds} segundos.`;
 
         // Atualizar ponteiros do relógio analógico
         // O relógio analógico aqui representa segundos, minutos e horas do tempo atual, não do tempo de namoro
