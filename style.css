@@ -141,7 +141,7 @@ footer {
 }
 
 /* Responsive adjustments */
-@media (max-width: 768px) {
+@media (max-width: 798px) {
     h1 {
         font-size: 2em;
         height: auto; /* Permite que a altura se ajuste automaticamente */
