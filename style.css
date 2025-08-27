@@ -145,7 +145,7 @@ footer {
     h1 {
         font-size: 2em;
         height: auto; /* Permite que a altura se ajuste automaticamente */
-        max-height: 300px; /* Define uma altura máxima para evitar que fiquem muito grandes */
+        max-height: 500px; /* Define uma altura máxima para evitar que fiquem muito grandes */
         object-fit: contain; /* Ou 'contain' para garantir que a imagem inteira seja visível, sem cortes */
         /* Se usar 'contain', pode ser necessário ajustar o background-color do contêiner da imagem */
     }
