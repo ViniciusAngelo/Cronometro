@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", function() {
     // Defina a data de início do namoro aqui (Ano, Mês-1, Dia, Hora, Minuto, Segundo)
-    const startDate = new Date(2023, 10, 28, 20, 20, 0); // Exemplo: 1º de janeiro de 2024, 00:00:00
+    const startDate = new Date(2023, 9, 28, 20, 20, 0); // Exemplo: 1º de janeiro de 2024, 00:00:00
 
     const hoursHand = document.querySelector(".hours");
     const minutesHand = document.querySelector(".minutes");
