@@ -1,5 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
     // Data de início do namoro (Ano, Mês-1, Dia, Hora, Minuto, Segundo)
+    // Dica: use (2023, 9, 28, 0, 0, 0) se quiser que o contador vire à meia-noite
     const startDate = new Date(2023, 9, 28, 20, 20, 0);
 
     const $ = (id) => document.getElementById(id);
@@ -44,11 +45,13 @@ document.addEventListener("DOMContentLoaded", () => {
         $("l-months").textContent = t.m === 1 ? "mês" : "meses";
         $("l-days").textContent = t.d === 1 ? "dia" : "dias";
 
-        // Mensagem especial em aniversários e "mesversários"
+        // Mensagem especial em aniversários e "mesversários" (baseada só na data, vale o dia todo)
         const sameDay = now.getDate() === startDate.getDate();
+        const sameMonth = now.getMonth() === startDate.getMonth();
+        const anos = now.getFullYear() - startDate.getFullYear();
         let msg = "";
-        if (sameDay && now.getMonth() === startDate.getMonth() && t.y > 0) {
-            msg = `Hoje completamos ${t.y} ${t.y === 1 ? "ano" : "anos"}.`;
+        if (sameDay && sameMonth && anos > 0) {
+            msg = `Hoje completamos ${anos} ${anos === 1 ? "ano" : "anos"}.`;
         } else if (sameDay) {
             msg = "Feliz mesversário.";
         }
