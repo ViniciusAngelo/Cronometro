@@ -3,34 +3,58 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nosso Amor</title>
+    <title>Nosso Tempo Juntos</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header>
-        <h1>Nosso Tempo Juntos</h1>
-    </header>
-    <main>
-        <section class="timer-section">
-            <div class="analog-clock">
-                <div class="hand hours"></div>
-                <div class="hand minutes"></div>
-                <div class="hand seconds"></div>
-            </div>
-            <p id="time-together"></p>
-        </section>
-        <section class="photos-section">
-            <div class="photo-gallery">
-                <img src="Fotosss1.jpeg" alt="Nossa foto 1">
-                <img src="Fotosss2.jpeg" alt="Nossa foto 2">
-                <img src="Fotosss3.jpeg" alt="Nossa foto 3">
-            </div>
-        </section>
-    </main>
-    <footer>
-        <p>&copy; Milene & Vinícius</p>
-    </footer>
+    <div class="page">
+        <header class="masthead">
+            <p class="eyebrow">Milene &amp; Vinícius</p>
+            <h1>Nosso tempo <em>juntos</em></h1>
+            <p class="since" id="since"></p>
+        </header>
+
+        <main>
+            <section class="card timer-section" aria-label="Tempo juntos">
+                <div class="analog-clock" aria-hidden="true">
+                    <div class="ticks"></div>
+                    <div class="hand hours"></div>
+                    <div class="hand minutes"></div>
+                    <div class="hand seconds"></div>
+                    <span class="pin"></span>
+                </div>
+
+                <p class="label">Estamos juntos há</p>
+                <div class="counter" id="counter" aria-live="off">
+                    <div><span id="c-years">0</span><small id="l-years">anos</small></div>
+                    <div><span id="c-months">0</span><small id="l-months">meses</small></div>
+                    <div><span id="c-days">0</span><small id="l-days">dias</small></div>
+                    <div><span id="c-hours">00</span><small>horas</small></div>
+                    <div><span id="c-minutes">00</span><small>minutos</small></div>
+                    <div><span id="c-seconds">00</span><small>segundos</small></div>
+                </div>
+                <p class="milestone" id="milestone"></p>
+            </section>
+
+            <section class="photos-section" aria-label="Nossas fotos">
+                <div class="section-title">
+                    <span></span><h2>Momentos</h2><span></span>
+                </div>
+                <div class="photo-gallery">
+                    <figure><img src="Fotosss1.jpeg" alt="Nossa foto 1"></figure>
+                    <figure><img src="Fotosss2.jpeg" alt="Nossa foto 2"></figure>
+                    <figure><img src="Fotosss3.jpeg" alt="Nossa foto 3"></figure>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p>Milene &amp; Vinícius <span>·</span> desde 2023</p>
+        </footer>
+    </div>
     <script src="script.js"></script>
 </body>
 </html>
-

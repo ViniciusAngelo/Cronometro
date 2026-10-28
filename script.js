@@ -1,62 +1,66 @@
-document.addEventListener("DOMContentLoaded", function() {
-    // Defina a data de início do namoro aqui (Ano, Mês-1, Dia, Hora, Minuto, Segundo)
-    const startDate = new Date(2023, 9, 28, 20, 20, 0); // Exemplo: 1º de janeiro de 2024, 00:00:00
+document.addEventListener("DOMContentLoaded", () => {
+    // Data de início do namoro (Ano, Mês-1, Dia, Hora, Minuto, Segundo)
+    const startDate = new Date(2023, 9, 28, 20, 20, 0);
 
+    const $ = (id) => document.getElementById(id);
     const hoursHand = document.querySelector(".hours");
     const minutesHand = document.querySelector(".minutes");
     const secondsHand = document.querySelector(".seconds");
-    const timeTogetherElement = document.getElementById("time-together");
+    const pad = (n) => String(n).padStart(2, "0");
 
-    function updateClock() {
-        const now = new Date();
-        const diff = now.getTime() - startDate.getTime();
+    const meses = ["janeiro","fevereiro","março","abril","maio","junho","julho",
+                   "agosto","setembro","outubro","novembro","dezembro"];
+    $("since").textContent =
+        `desde ${startDate.getDate()} de ${meses[startDate.getMonth()]} de ${startDate.getFullYear()}`;
 
-        // Calcular anos, meses, dias, horas, minutos, segundos
-        const seconds = Math.floor(diff / 1000);
-        const minutes = Math.floor(seconds / 60);
-        const hours = Math.floor(minutes / 60);
-        const days = Math.floor(hours / 24);
+    // Diferença de calendário exata (anos, meses, dias, horas, minutos, segundos)
+    function diffCalendar(from, to) {
+        let y = to.getFullYear() - from.getFullYear();
+        let m = to.getMonth() - from.getMonth();
+        let d = to.getDate() - from.getDate();
+        let h = to.getHours() - from.getHours();
+        let min = to.getMinutes() - from.getMinutes();
+        let s = to.getSeconds() - from.getSeconds();
 
-        // Cálculo de anos e meses mais preciso
-        let years = now.getFullYear() - startDate.getFullYear();
-        let months = now.getMonth() - startDate.getMonth();
-        let remainingDays = now.getDate() - startDate.getDate();
-
-        if (remainingDays < 0) {
-            months--;
-            const prevMonth = new Date(now.getFullYear(), now.getMonth(), 0);
-            remainingDays = prevMonth.getDate() + remainingDays;
-        }
-
-        if (months < 0) {
-            years--;
-            months += 12;
-        }
-
-        const remainingHours = hours % 24;
-        const remainingMinutes = minutes % 60;
-        const remainingSeconds = seconds % 60;
-
-        timeTogetherElement.textContent = 
-            `Estamos juntos há: ${years} ano, ${months} meses, ${remainingDays} dias, ${remainingHours} horas, ${remainingMinutes} minutos e ${remainingSeconds} segundos.`;
-
-        // Atualizar ponteiros do relógio analógico
-        // O relógio analógico aqui representa segundos, minutos e horas do tempo atual, não do tempo de namoro
-        const currentSeconds = now.getSeconds();
-        const currentMinutes = now.getMinutes();
-        const currentHours = now.getHours();
-
-        const secondsDegrees = (currentSeconds / 60) * 360;
-        const minutesDegrees = ((currentMinutes + currentSeconds / 60) / 60) * 360;
-        const hoursDegrees = ((currentHours + currentMinutes / 60) / 12) * 360;
-
-        secondsHand.style.transform = `translateX(-50%) rotate(${secondsDegrees}deg)`;
-        minutesHand.style.transform = `translateX(-50%) rotate(${minutesDegrees}deg)`;
-        hoursHand.style.transform = `translateX(-50%) rotate(${hoursDegrees}deg)`;
+        if (s < 0)   { s += 60; min--; }
+        if (min < 0) { min += 60; h--; }
+        if (h < 0)   { h += 24; d--; }
+        if (d < 0)   { d += new Date(to.getFullYear(), to.getMonth(), 0).getDate(); m--; }
+        if (m < 0)   { m += 12; y--; }
+        return { y, m, d, h, min, s };
     }
 
-    // Atualiza o relógio a cada segundo
-    setInterval(updateClock, 1000);
-    updateClock(); // Chama a função uma vez para exibir o tempo imediatamente
-});
+    function update() {
+        const now = new Date();
+        const t = diffCalendar(startDate, now);
 
+        $("c-years").textContent = t.y;
+        $("c-months").textContent = t.m;
+        $("c-days").textContent = t.d;
+        $("c-hours").textContent = pad(t.h);
+        $("c-minutes").textContent = pad(t.min);
+        $("c-seconds").textContent = pad(t.s);
+        $("l-years").textContent = t.y === 1 ? "ano" : "anos";
+        $("l-months").textContent = t.m === 1 ? "mês" : "meses";
+        $("l-days").textContent = t.d === 1 ? "dia" : "dias";
+
+        // Mensagem especial em aniversários e "mesversários"
+        const sameDay = now.getDate() === startDate.getDate();
+        let msg = "";
+        if (sameDay && now.getMonth() === startDate.getMonth() && t.y > 0) {
+            msg = `Hoje completamos ${t.y} ${t.y === 1 ? "ano" : "anos"}.`;
+        } else if (sameDay) {
+            msg = "Feliz mesversário.";
+        }
+        $("milestone").textContent = msg;
+
+        // Relógio analógico com a hora atual
+        const s = now.getSeconds(), m = now.getMinutes(), h = now.getHours();
+        secondsHand.style.transform = `translateX(-50%) rotate(${s * 6}deg)`;
+        minutesHand.style.transform = `translateX(-50%) rotate(${(m + s / 60) * 6}deg)`;
+        hoursHand.style.transform   = `translateX(-50%) rotate(${((h % 12) + m / 60) * 30}deg)`;
+    }
+
+    update();
+    setInterval(update, 1000);
+});
