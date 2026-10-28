@@ -211,6 +211,29 @@ h2 {
 .photo-featured:hover { transform: translateY(-6px); }
 .photo-featured:hover img { filter: saturate(1.05); }
 
+/* Legenda da foto em destaque */
+.photo-featured figcaption {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 1rem 0 0.4rem;
+    text-align: center;
+}
+.caption-title {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 1.7rem;
+    line-height: 1;
+    color: var(--wine);
+}
+.caption-date {
+    font-family: var(--sans);
+    font-size: 0.68rem;
+    letter-spacing: 0.3em;
+    color: var(--muted);
+}
+
 /* Galeria com 3 fotos */
 .photo-gallery {
     display: grid;
